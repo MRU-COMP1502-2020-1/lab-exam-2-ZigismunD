@@ -1,5 +1,7 @@
 package lsystems;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -15,7 +17,18 @@ public class LLine {
 	}
 	
 	public void process() throws LSystemSymbolException, LSystemLengthException {
-		
+		List<Character> result = new ArrayList<>();
+
+		for (char c : line) {
+			LRule rule = findRule(c);
+
+			for (char ch : rule.getBody()) {
+				result.add(ch);
+			}
+
+		}
+
+		this.line = listToArray(result);
 	}
 	
 	
@@ -31,6 +44,16 @@ public class LLine {
 	public String toString() {
 		
 		return new String(line);
+	}
+
+	private LRule findRule(char c) throws LSystemSymbolException {
+		for (LRule rule : this.rules) {
+			if (rule.getMatch() == c) {
+				return rule;
+			}
+		}
+		// Tultiin for-loopin ulkopuolelle, siis minkään rulen match ei ollut c
+		throw new LSystemSymbolException();
 	}
 	
 }
