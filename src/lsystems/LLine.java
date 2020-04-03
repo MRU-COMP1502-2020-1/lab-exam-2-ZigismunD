@@ -18,6 +18,10 @@ public class LLine {
 	
 	public void process() throws LSystemSymbolException, LSystemLengthException {
 		List<Character> result = new ArrayList<>();
+		
+		if (this.line.length == 0) {
+			throw new LSystemLengthException();
+		}
 
 		for (char c : line) {
 			LRule rule = findRule(c);
@@ -52,8 +56,8 @@ public class LLine {
 				return rule;
 			}
 		}
-		// Tultiin for-loopin ulkopuolelle, siis minkään rulen match ei ollut c
-		throw new LSystemSymbolException();
+		
+		throw new LSystemSymbolException(c);
 	}
 	
 }

@@ -1,5 +1,5 @@
 package lsystems;
 
-public class LSystemLengthException extends Throwable {
+public class LSystemLengthException extends Exception {
 
 }

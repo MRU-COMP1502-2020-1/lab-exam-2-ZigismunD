@@ -8,6 +8,6 @@ public class A_X extends LRule {
 
     @Override
     public char[] getBody() {
-        return new char[]{};
+    	return new char[]{};
     }
 }
